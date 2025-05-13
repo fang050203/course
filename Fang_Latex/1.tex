@@ -1,0 +1,125 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}  % 引入 xcolor 宏包，可以使用不同颜色字
+
+
+
+\pagestyle{fancy}
+
+\fancyhead[L]{}
+\fancyhead[C]{数字逻辑设计实验}
+\fancyhead[R]{}
+
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+    {\Huge\bfseries{数字逻辑设计实验报告}\par}
+    \vspace{5cm}
+    {\Large\bfseries{实验四：状态机实验}\par}
+    \vspace{2cm}
+    {\Large{2023313409 房效民}\par}
+    \vspace{0.5cm}
+    {\Large{完成日期：\today}\par}
+    \vspace{0.5cm}
+    {\Large{班级：20233119}\par}
+    \vspace{0.5cm}
+    {\Large{学期：秋季学期}\par}
+    \vspace{0.5cm}
+    {\Large{上课地点：T2615}\par}
+    \vspace{0.5cm}
+    {\Large{实验完成时间：4h}\par}
+    \vspace{2cm}
+\end{titlepage}
+
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{\textbf{状态转换图}}
+状态机状态转移图如下：\par
+\begin{figure}[htbp]% 这里的参数决定图形的位置
+    \centering % 使图片居中
+    \includegraphics[scale=1]{状态转换图.png} % 设置图片宽度为文本宽度的80%
+    \caption{状态转换图} % 图片标题
+\end{figure}
+
+\vspace{3cm}
+状态解释：\par
+IDLE：空闲态，发送高电平，编码0000\par
+START:起始态，发送低电平，编码0001\par
+DATA\_x:发送data数据的第x位，编码0010-1001\par
+STOP：停止位，发送高电平，编码1010\par
+valid:控制输入数字，每0.1秒变一次。\par
+check：波特率控制器，每秒9600次。\par
+{\color{red}图中红色字体表示下一个状态还是本身的输出条件}\par
+
+
+
+\section{\textbf{UART数据桢仿真}}
+\begin{figure}[htbp]% 这里的参数决定图形的位置
+    \centering % 使图片居中
+    \includegraphics[scale=0.8]{波形图.png} % 设置图片宽度为文本宽度的80%
+    \caption{UART波形图} % 图片标题
+\end{figure}
+
+仿真分析：发送数据0xa5,dout通过数据桢格式依次发出0101001011，其中：\par
+START位：0。\par
+data数据：低位先传。\par
+停止位：1\par
+
+\section{\textbf{RTL图}}
+\begin{figure}[htbp]% 这里的参数决定图形的位置
+    \centering % 使图片居中
+    \includegraphics[scale=0.6]{RTL.png} % 设置图片宽度为文本宽度的80%
+    \caption{RTL} % 图片标题
+\end{figure}
+
+
+\begin{figure}[htbp]% 这里的参数决定图形的位置
+    \centering % 使图片居中
+    \includegraphics[scale=0.8]{状态寄存器.png} % 设置图片宽度为文本宽度的80%
+    \caption{状态寄存器} % 图片标题
+\end{figure}
+
+
+
+\begin{figure}[htbp]% 这里的参数决定图形的位置
+    \centering % 使图片居中
+    \includegraphics[scale=0.8]{转移逻辑.png} % 设置图片宽度为文本宽度的80%
+    \caption{转移逻辑} % 图片标题
+\end{figure}
+
+
+\begin{figure}[htbp]% 这里的参数决定图形的位置
+    \centering % 使图片居中
+    \includegraphics[scale=0.8]{输出.png} % 设置图片宽度为文本宽度的80%
+    \caption{输出} % 图片标题
+\end{figure}
+
+
+
+
+
+\end{document}
+
+
